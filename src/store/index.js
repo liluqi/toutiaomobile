@@ -12,7 +12,7 @@ export default new Vuex.Store({
     // 要想改变user的值
     updateUser (state, payload) {
       state.user = payload.user // 给user重新赋值
-      auth.setUser(state.user) // 重新缓存
+      auth.setUser(payload.user) // 重新缓存
     },
 
     // 清空token

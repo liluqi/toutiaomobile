@@ -4,7 +4,7 @@
 import axios from 'axios'
 import JSONBigint from 'json-bigint'
 import store from '@/store'
-import route from '@/router'
+import route from '@/router/router.js'
 
 // 新建一个instence,与之前的axios没有关系
 const instence = axios.create({

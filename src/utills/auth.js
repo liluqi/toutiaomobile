@@ -1,5 +1,5 @@
 // 此文件定义 token 的增加 获取 和删除
-const USER_TOKEN = ''// 用来存储token值
+const USER_TOKEN = 'heimatoutiao-mobile'// 用来存储token值
 
 // 创建本地token的方法
 export function setUser (user) {
@@ -8,7 +8,7 @@ export function setUser (user) {
 
 // 获取token
 export function getUser () {
-  return JSON.parse(window.localStorage.getItem(USER_TOKEN) || {})
+  return JSON.parse(window.localStorage.getItem(USER_TOKEN) || '{}')
 }
 
 // 删除token
