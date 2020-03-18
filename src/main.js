@@ -4,7 +4,7 @@ import router from './router/router.js'
 import store from './store'
 import Vant from 'vant'
 import 'amfe-flexible'
-import 'vant/lib/index.css'
+import 'vant/lib/index.less'
 import '@/styles/index.less'
 Vue.use(Vant)
 
