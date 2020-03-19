@@ -61,7 +61,9 @@ export default {
       return true
     },
     async login () {
-      if (this.checkMobile() && this.checkCode()) {
+      const validateMobile = this.checkMobile()
+      const validateCode = this.checkCode()
+      if (validateMobile && validateCode) {
         // 发送登录请求 封装到api/login
         try {
           const result = await login(this.loginForm)// 请求成功返回result方法此时的reslut是{token:'',refresh_token: ''}
