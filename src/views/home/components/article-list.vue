@@ -44,7 +44,7 @@ export default {
     onRefresh () {
       setTimeout(() => {
         const arr = Array.from(
-          Array(2),
+          Array(3),
           (value, index) => ('追加' + (index + 1))
         )
         this.article.unshift(...arr)
