@@ -2,19 +2,19 @@
   <div class="container">
     <van-tabs>
       <van-tab v-for="index in 8" :title="'标签 ' + index" :key="index">
-           <div class='scroll-wrapper'>
-              <van-cell-group>
-                <van-cell title="标题" value="内容" :key="item" v-for="item in 20"></van-cell>
-              </van-cell-group>
-            </div>
+        <article-list></article-list>
       </van-tab>
     </van-tabs>
   </div>
 </template>
 
 <script>
+import ArticleList from './components/article-list'
 export default {
-  name: 'home'
+  name: 'home',
+  components: {
+    'article-list': ArticleList
+  }
 }
 </script>
 
