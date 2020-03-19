@@ -1,19 +1,39 @@
 <template>
   <div class="container">
     <van-tabs>
-      <van-tab v-for="index in 8" :title="'标签 ' + index" :key="index">
+      <van-tab v-for="item in channels" :title="item.name" :key="item.id">
         <article-list></article-list>
       </van-tab>
     </van-tabs>
+    <span class="bar_btn">
+      <!-- 放入图标 vant图标 -->
+      <van-icon name="wap-nav"></van-icon>
+    </span>
   </div>
 </template>
 
 <script>
 import ArticleList from './components/article-list'
+import { Channels } from '@/api/channels'
 export default {
   name: 'home',
   components: {
     'article-list': ArticleList
+  },
+  data () {
+    return {
+      channels: []
+    }
+  },
+  methods: {
+    async getChannels () {
+      const result = await Channels()
+      console.log(result)
+      this.channels = result.channels
+    }
+  },
+  created () {
+    this.getChannels()
   }
 }
 </script>
