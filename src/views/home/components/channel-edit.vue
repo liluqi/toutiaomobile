@@ -9,7 +9,7 @@
       </div>
       <van-grid class="van-hairline--left">
         <van-grid-item @click="$emit('selectIndex',index)" v-for="(item,index) in channels" :key="item.id">
-          <span class="f12">{{ item.name }}</span>
+          <span :class="{red: index === active}" class="f12">{{ item.name }}</span>
           <van-icon class="btn" name="cross"></van-icon>
         </van-grid-item>
       </van-grid>
@@ -41,6 +41,11 @@ export default {
       required: true,
       type: Array,
       default: () => []
+    },
+    active: {
+      required: true,
+      type: Number,
+      default: 0
     }
   },
   methods: {

@@ -10,7 +10,7 @@
       <van-icon name="wap-nav"></van-icon>
     </span>
     <van-action-sheet v-model="show" title="编辑频道" :round="false">
-      <channel-edit @selectIndex="selectIndex" :channels="channels"></channel-edit>
+      <channel-edit @selectIndex="selectIndex" :active="active" :channels="channels"></channel-edit>
     </van-action-sheet>
   </div>
 </template>
