@@ -5,23 +5,29 @@
         <article-list :channel_id="item.id"></article-list>
       </van-tab>
     </van-tabs>
-    <span class="bar_btn">
+    <span class="bar_btn" @click="show=true">
       <!-- 放入图标 vant图标 -->
       <van-icon name="wap-nav"></van-icon>
     </span>
+    <van-action-sheet v-model="show" title="编辑频道" :round="false">
+      <channel-edit :channels="channels"></channel-edit>
+    </van-action-sheet>
   </div>
 </template>
 
 <script>
 import ArticleList from './components/article-list'
 import { Channels } from '@/api/channels'
+import ChannelEdit from './components/channel-edit'
 export default {
   name: 'home',
   components: {
-    'article-list': ArticleList
+    'article-list': ArticleList,
+    'channel-edit': ChannelEdit
   },
   data () {
     return {
+      show: false,
       channels: []
     }
   },
@@ -91,6 +97,17 @@ export default {
     z-index: 1000;
     &::before {
       font-size: 20px;
+    }
+  }
+}
+.van-action-sheet {
+  max-height: 100%;
+  height: 100%;
+  .van-action-sheet__header {
+    background: #3296fa;
+    color: #fff;
+    .van-icon-close {
+      color: #fff;
     }
   }
 }
