@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <van-tabs>
+    <van-tabs v-model="active">
       <van-tab v-for="item in channels" :title="item.name" :key="item.id">
         <article-list :channel_id="item.id"></article-list>
       </van-tab>
@@ -10,7 +10,7 @@
       <van-icon name="wap-nav"></van-icon>
     </span>
     <van-action-sheet v-model="show" title="编辑频道" :round="false">
-      <channel-edit :channels="channels"></channel-edit>
+      <channel-edit @selectIndex="selectIndex" :channels="channels"></channel-edit>
     </van-action-sheet>
   </div>
 </template>
@@ -28,7 +28,8 @@ export default {
   data () {
     return {
       show: false,
-      channels: []
+      channels: [],
+      active: 0
     }
   },
   methods: {
@@ -36,6 +37,10 @@ export default {
       const result = await Channels()
       console.log(result)
       this.channels = result.channels
+    },
+    selectIndex (index) {
+      this.active = index
+      this.show = false
     }
   },
   created () {
