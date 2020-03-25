@@ -4,21 +4,21 @@
 
       <van-list>
         <van-cell-group>
-          <van-cell>
+          <van-cell v-for="(item,index) in searchResult" :key="index">
             <div class="article_item">
-              <h3 class="van-ellipsis">PullRefresh下拉刷新PullRefresh下拉刷新下拉刷新下拉刷新</h3>
-              <div class="img_box">
-                <van-image class="w33" fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-                <van-image class="w33" fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-                <van-image class="w33" fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+              <h3 class="van-ellipsis">{{item.title}}</h3>
+              <div class="img_box" v-if="item.cover.type === 3">
+                <van-image class="w33" fit="cover" :src="item.cover.images[0]" />
+                <van-image class="w33" fit="cover" :src="item.cover.images[1]" />
+                <van-image class="w33" fit="cover" :src="item.cover.images[2]" />
               </div>
-              <div class="img_box">
-                <van-image class="w100" fit="cover" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+              <div class="img_box" v-if="item.cover.type === 1">
+                <van-image class="w100" fit="cover" :src="item.cover.images[0]" />
               </div>
               <div class="info_box">
-                <span>你像一阵风</span>
-                <span>8评论</span>
-                <span>10分钟前</span>
+                <span>{{item.aut_name}}</span>
+                <span>{{item.comm_count}}</span>
+                <span>{{item.pubdate}}</span>
               </div>
             </div>
           </van-cell>
@@ -28,8 +28,24 @@
 </template>
 
 <script>
+import { getSearch } from '@/api/search'
 export default {
+  data () {
+    return {
+      searchResult: []
+    }
+  },
+  methods: {
+    async getSearch () {
+      const data = await getSearch({ q: this.$route.query })
+      console.log(data.results)
 
+      this.searchResult = data.results
+    }
+  },
+  created () {
+    this.getSearch()
+  }
 }
 </script>
 
